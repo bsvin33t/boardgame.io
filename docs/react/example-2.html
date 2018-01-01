@@ -51,7 +51,7 @@ function IsVictory(cells) {
 
 const TicTacToe = BoardgameIO.Game({
   setup: () => ({ cells: Array(9).fill(null) }),
-  
+
   moves: {
     clickCell(G, ctx, id) {
       const cells = [...G.cells];
@@ -66,7 +66,9 @@ const TicTacToe = BoardgameIO.Game({
 
   flow: {
     victory: (G, ctx) => {
-      return IsVictory(G.cells) ? ctx.currentPlayer : null;
+      if (IsVictory(G.cells)) {
+        return ctx.currentPlayer;
+      }
     }
   }
 });
